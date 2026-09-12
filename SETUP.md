@@ -1,121 +1,100 @@
-# Raspberry Pi setup — weekly parkrun fetch
+# Weekly parkrun fetch — live setup
 
-Every Saturday evening the Pi fetches Richard's full parkrun history, writes it
-to `data/`, and pushes it to GitHub. Pull that repo anywhere and Claude can read
-`data/athlete_448437.json`.
+**Status: deployed and tested 2026-09-12.**
 
-## 1. Put this project in its own git repo
+Every Saturday at 19:00 (and again Sunday 09:00 as a catch-up) the Raspberry Pi
+fetches Richard's full parkrun history, and pushes it to GitHub *only if a new
+parkrun has appeared*. Pull the repo anywhere and read `data/athlete_448437.json`.
 
-The parkrun folder currently sits inside a much larger (uncommitted) iCloud repo.
-The Pi wants a small, dedicated repo. On the Mac:
-
-```bash
-cd "~/Library/Mobile Documents/com~apple~CloudDocs/Programming/Python/My_Code/Web_Scraping/parkrun"
-git init                       # creates a repo just for this folder
-git add .
-git commit -m "parkrun fetcher + weekly Pi job"
+```
+Pi (cron)  ──fetch──>  parkrun.org.uk
+   │
+   └──push (deploy key)──>  github.com/CoderRickC/parkrun  ──git pull──>  Mac
 ```
 
-Create an empty repo on GitHub (private is fine), then:
+## What's where
 
-```bash
-git remote add origin git@github.com:<your-username>/parkrun.git
-git branch -M main
-git push -u origin main
-```
+| | |
+| --- | --- |
+| GitHub repo | `git@github.com:CoderRickC/parkrun.git` (private) |
+| Pi | `pi@raspberrypi.local` — Raspberry Pi 5, Debian 13 (trixie), Python 3.13.5 |
+| Path on the Pi | `/home/pi/parkrun` |
+| Pi auth | ed25519 **deploy key** `raspberrypi-parkrun (write)`, no passphrase |
+| Pi git identity | `Raspberry Pi <richard.clegg@me.com>` |
+| Timezone | Europe/London, so cron times are local |
+| Logs | `~/parkrun/logs/parkrun.log` (script) and `logs/cron.log` (cron) |
 
-> If `git init` complains that the folder is already inside a repo, that's the
-> parent `Programming/Python` repo — it has no commits and no remote, so you can
-> simply `rm -rf "../../../.git"` first, or keep this folder somewhere outside it.
-
-## 2. Give the Pi push access
-
-On the Pi:
-
-```bash
-ssh-keygen -t ed25519 -C "raspberrypi-parkrun"     # press Enter for no passphrase
-cat ~/.ssh/id_ed25519.pub
-```
-
-Paste that key into GitHub → your repo → **Settings → Deploy keys → Add deploy
-key**, and tick **Allow write access**. Then test:
-
-```bash
-ssh -T git@github.com
-```
-
-## 3. Clone and install on the Pi
-
-```bash
-sudo apt update && sudo apt install -y python3-venv git
-git clone git@github.com:<your-username>/parkrun.git ~/parkrun
-cd ~/parkrun
-python3 -m venv .venv
-.venv/bin/pip install --upgrade pip
-.venv/bin/pip install -r requirements.txt
-```
-
-Tell git who is committing (cron has no interactive config):
-
-```bash
-git config user.name  "Raspberry Pi"
-git config user.email "richard.clegg@me.com"
-```
-
-## 4. Test it by hand
-
-```bash
-cd ~/parkrun
-./run_weekly.sh
-```
-
-You should see the fetch log, then either a push or
-`no new parkrun data — nothing to commit`. Running it twice in a row should
-give that second message — the files are only rewritten when the results change.
-
-## 5. Schedule it
-
-```bash
-crontab -e
-```
-
-Add these two lines:
+Crontab on the Pi (alongside the existing `oldham-news` job):
 
 ```cron
-# Saturday 19:00 — parkrun results are usually published by late afternoon
 0 19 * * 6 /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
-
-# Sunday 09:00 — catch-up if the results were published late or the Pi was off
-0 9 * * 0 /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+0  9 * * 0 /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 ```
 
-Adjust `/home/pi/` if your username differs (`echo $HOME` will tell you). The
-Sunday run is free: if nothing changed it commits nothing.
+## Day-to-day
 
-Check it later with:
-
-```bash
-tail -n 40 ~/parkrun/logs/cron.log
-tail -n 40 ~/parkrun/logs/parkrun.log
-```
-
-## 6. Read the data
-
-Anywhere you've cloned the repo:
+Get the latest data on the Mac:
 
 ```bash
 git pull
 ```
 
-Then point Claude at `data/athlete_448437.json` (full history) or
-`data/athlete_448437_summary.md` (quick digest).
+Check the Pi is behaving:
+
+```bash
+ssh pi@raspberrypi.local 'tail -20 ~/parkrun/logs/parkrun.log'
+```
+
+Run it early by hand (e.g. straight after a parkrun):
+
+```bash
+ssh pi@raspberrypi.local '~/parkrun/run_weekly.sh'
+```
+
+## Things worth knowing
+
+- **A quiet week is silent by design.** The script only rewrites the data files
+  when the results actually change, so no parkrun means no commit. `fetched_at`
+  in the JSON is therefore the date the data last *changed*, not the last check.
+  Use the log to confirm the job is alive. `--force` rewrites regardless.
+- **parkrun 403s lazy user agents.** A bare `curl -A "Mozilla/5.0"` gets 403
+  from the Pi; the full header set in `parkrun_athlete.py` gets 200. Don't trim
+  those headers.
+- **The `.xlsx` is gitignored.** Its bytes change on every write even with
+  identical data, which would defeat the change detection. The committed CSV
+  opens in Excel fine.
+- **The deploy key has no passphrase.** That's required for unattended cron. It
+  grants write access to this one repo only, not the whole GitHub account.
+
+## Rebuilding the Pi from scratch
+
+```bash
+ssh-keygen -t ed25519 -C "raspberrypi-parkrun" -f ~/.ssh/id_ed25519 -N ""
+# add ~/.ssh/id_ed25519.pub at GitHub -> repo -> Settings -> Deploy keys (allow write)
+git clone git@github.com:CoderRickC/parkrun.git ~/parkrun
+cd ~/parkrun
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+git config user.name "Raspberry Pi" && git config user.email "richard.clegg@me.com"
+mkdir -p logs
+crontab -e     # add the two lines above
+```
+
+Verify it works the way cron will actually invoke it (stripped environment, no
+ssh-agent — this is where such jobs usually fail):
+
+```bash
+env -i HOME=/home/pi LOGNAME=pi PATH=/usr/bin:/bin SHELL=/bin/sh \
+  /home/pi/parkrun/run_weekly.sh </dev/null
+```
 
 ## Troubleshooting
 
 | Symptom | Fix |
 | --- | --- |
-| `no virtualenv at .../.venv/bin/python` | Re-run step 3. |
-| Fetch retries then exits 1 | parkrun was down or rate-limiting; the Sunday run retries. |
-| `Parse failed` (exit 2) | parkrun changed their HTML — the table captions in `parkrun_athlete.py` need updating. |
-| Cron never runs | Check the path in `crontab -l` is absolute and the script is `chmod +x`. |
-| Push fails | Deploy key missing write access, or `git config user.email` unset. |
+| `no virtualenv at .../.venv/bin/python` | Rebuild the venv (above). |
+| Retries then exit 1 | parkrun down or rate-limiting; the Sunday run retries. |
+| `Parse failed` (exit 2) | parkrun changed their HTML — update the table captions in `parkrun_athlete.py`. |
+| Nothing ever commits | Expected if you haven't run a parkrun. Check `logs/parkrun.log` for "No change since last fetch". |
+| Push fails | Deploy key lost write access, or `git config user.email` unset in `~/parkrun`. |
+| Cron silent | `grep CRON /var/log/syslog`; confirm `crontab -l` paths are absolute. |
