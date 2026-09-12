@@ -46,3 +46,5 @@ Also written, all derived from the same fetch:
   no one to prompt, so never add interactive input.
 - Don't hardcode paths; `--out-dir` and `--log-dir` default relative to the
   script so the Mac and the Pi both work.
+
+<!-- deployment verified 2026-09-12 -->
