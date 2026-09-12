@@ -31,6 +31,13 @@ if [[ ! -x "$PYTHON" ]]; then
     exit 1
 fi
 
+# Catch up with anything pushed from elsewhere, otherwise our push is rejected
+# and every future run fails. Only data/ is written here, so fast-forward is safe.
+if ! git pull --ff-only -q 2>/dev/null; then
+    echo "$(date '+%Y-%m-%dT%H:%M:%S') WARNING: git pull --ff-only failed; the branch has diverged." >&2
+    echo "  Fix it by hand on the Pi, otherwise the push below will fail." >&2
+fi
+
 "$PYTHON" parkrun_athlete.py --athlete-id "$ATHLETE_ID"
 
 # Commit only the text data files; the .xlsx is gitignored because its bytes
@@ -50,5 +57,10 @@ print(f\"{d['total_parkruns']} total — {r['event']} {r['date']} {r['time']}\")
 ")
 
 git commit -q -m "parkrun data: ${LATEST}"
-git push -q
-echo "$(date '+%Y-%m-%dT%H:%M:%S') committed and pushed: ${LATEST}"
+
+if git push -q; then
+    echo "$(date '+%Y-%m-%dT%H:%M:%S') committed and pushed: ${LATEST}"
+else
+    echo "$(date '+%Y-%m-%dT%H:%M:%S') ERROR: committed locally but push failed: ${LATEST}" >&2
+    exit 1
+fi
