@@ -2,11 +2,17 @@
 
 **Status: deployed and tested 2026-09-12.**
 
-Six times a day — hourly from 11:00 to 16:00 — on Saturdays, plus Christmas Day
-and New Year's Day, the Raspberry Pi fetches Richard's full parkrun history and
-pushes it to GitHub *only if a new parkrun has appeared*. The repeat runs cost
-nothing: whichever one first sees the new result commits it, and the rest are
-no-ops. Pull the repo anywhere and read `data/athlete_448437.json`.
+The Raspberry Pi fetches Richard's full parkrun history and pushes it to GitHub
+*only if a new parkrun has appeared*:
+
+- **every day at 22:00** — the safety net, so a parkrun run abroad is captured
+  whatever day or timezone it happened in;
+- **hourly 11:00-16:00 on Saturdays** — same-day capture for the usual UK runs;
+- **hourly 11:00-16:00 on Christmas Day and New Year's Day.**
+
+The repeat runs cost nothing: whichever one first sees the new result commits it
+and the rest are no-ops, so it stays one commit per parkrun (~680 fetches a year,
+~52 commits). Pull the repo anywhere and read `data/athlete_448437.json`.
 
 ```
 Pi (cron)  ──fetch──>  parkrun.org.uk
@@ -29,12 +35,14 @@ Pi (cron)  ──fetch──>  parkrun.org.uk
 Crontab on the Pi (alongside the existing `oldham-news` job):
 
 ```cron
+# Daily safety net — catches events abroad
+0 22 * * *      /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 # Saturdays, hourly 11:00-16:00 (6 runs)
-0 11-16 * * 6  /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+0 11-16 * * 6   /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 # Christmas Day
 0 11-16 25 12 * /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 # New Year's Day
-0 11-16 1 1 *  /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+0 11-16 1 1 *   /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 ```
 
 **Do not put `6` in the day-of-week field of the two holiday lines.** When cron
@@ -76,6 +84,12 @@ ssh pi@raspberrypi.local '~/parkrun/run_weekly.sh'
 - **Why hourly from 11:00.** parkrun starts at 09:00 and results appear anywhere
   from late morning onwards. Six attempts across the day means a slow-publishing
   event is still captured the same day without anyone watching.
+- **Why the daily run is at 22:00.** parkrun starts 09:00 *local* worldwide, so
+  in UK terms a Saturday event publishes anywhere from Friday ~21:00 (Chatham
+  Islands, NZ) to Saturday ~21:00 (US Pacific). 22:00 sits after almost all of
+  that, avoids the hours `oldham-news` uses, and is clear of the 11:00-16:00
+  block. Hawaii publishes around midnight UK and is picked up the next night —
+  the daily run is a safety net, not a race.
 - **parkrun 403s lazy user agents.** A bare `curl -A "Mozilla/5.0"` gets 403
   from the Pi; the full header set in `parkrun_athlete.py` gets 200. Don't trim
   those headers.
