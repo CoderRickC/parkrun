@@ -1,0 +1,11 @@
+[project]
+name = "parkrun"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "openpyxl>=3.1.5",
+    "requests>=2.32.5",
+]

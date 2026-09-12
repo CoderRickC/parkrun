@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+logs/
+.run_weekly.lock
+
+# Derived Excel files: regenerate with parkrun_athlete.py.
+# Their bytes change on every run, which would create a commit every week
+# even when no new parkrun happened. The committed CSV opens in Excel fine.
+*.xlsx
