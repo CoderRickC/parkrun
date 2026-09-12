@@ -2,9 +2,11 @@
 
 **Status: deployed and tested 2026-09-12.**
 
-Every Saturday at 19:00 (and again Sunday 09:00 as a catch-up) the Raspberry Pi
-fetches Richard's full parkrun history, and pushes it to GitHub *only if a new
-parkrun has appeared*. Pull the repo anywhere and read `data/athlete_448437.json`.
+Six times a day — hourly from 11:00 to 16:00 — on Saturdays, plus Christmas Day
+and New Year's Day, the Raspberry Pi fetches Richard's full parkrun history and
+pushes it to GitHub *only if a new parkrun has appeared*. The repeat runs cost
+nothing: whichever one first sees the new result commits it, and the rest are
+no-ops. Pull the repo anywhere and read `data/athlete_448437.json`.
 
 ```
 Pi (cron)  ──fetch──>  parkrun.org.uk
@@ -27,9 +29,22 @@ Pi (cron)  ──fetch──>  parkrun.org.uk
 Crontab on the Pi (alongside the existing `oldham-news` job):
 
 ```cron
-0 19 * * 6 /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
-0  9 * * 0 /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+# Saturdays, hourly 11:00-16:00 (6 runs)
+0 11-16 * * 6  /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+# Christmas Day
+0 11-16 25 12 * /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
+# New Year's Day
+0 11-16 1 1 *  /home/pi/parkrun/run_weekly.sh >> /home/pi/parkrun/logs/cron.log 2>&1
 ```
+
+**Do not put `6` in the day-of-week field of the two holiday lines.** When cron
+has *both* day-of-month and day-of-week restricted it ORs them, so `0 11-16 25
+12 6` would fire on the 25th **and** on every Saturday in December. Leaving
+day-of-week as `*` makes it a plain AND, which is what we want.
+
+When Christmas Day or New Year's Day *is* a Saturday (next: 2027-12-25 and
+2028-01-01) both lines fire in the same minute. The `flock` in `run_weekly.sh`
+means the second instance exits cleanly instead of racing the first.
 
 ## Day-to-day
 
@@ -54,9 +69,13 @@ ssh pi@raspberrypi.local '~/parkrun/run_weekly.sh'
 ## Things worth knowing
 
 - **A quiet week is silent by design.** The script only rewrites the data files
-  when the results actually change, so no parkrun means no commit. `fetched_at`
-  in the JSON is therefore the date the data last *changed*, not the last check.
-  Use the log to confirm the job is alive. `--force` rewrites regardless.
+  when the results actually change, so no parkrun means no commit — and only one
+  of the six daily runs ever commits. `fetched_at` in the JSON is therefore the
+  date the data last *changed*, not the last check. Use the log to confirm the
+  job is alive. `--force` rewrites regardless.
+- **Why hourly from 11:00.** parkrun starts at 09:00 and results appear anywhere
+  from late morning onwards. Six attempts across the day means a slow-publishing
+  event is still captured the same day without anyone watching.
 - **parkrun 403s lazy user agents.** A bare `curl -A "Mozilla/5.0"` gets 403
   from the Pi; the full header set in `parkrun_athlete.py` gets 200. Don't trim
   those headers.
@@ -77,7 +96,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 git config user.name "Raspberry Pi" && git config user.email "richard.clegg@me.com"
 mkdir -p logs
-crontab -e     # add the two lines above
+crontab -e     # add the three lines above
 ```
 
 Verify it works the way cron will actually invoke it (stripped environment, no

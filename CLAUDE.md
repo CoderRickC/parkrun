@@ -3,8 +3,10 @@
 Scrapes parkrun.org.uk. Two independent scripts:
 
 - `parkrun_athlete.py` — Richard's full results history (athlete **448437**).
-  Runs every Saturday on the Raspberry Pi via `run_weekly.sh` + cron, which
-  commits and pushes `data/` only when a new parkrun appears. See `SETUP.md`.
+  Runs on the Raspberry Pi via `run_weekly.sh` + cron, hourly 11:00-16:00 on
+  Saturdays plus Christmas Day and New Year's Day. It commits and pushes `data/`
+  only when a new parkrun appears, so only one of the six daily runs ever
+  commits and a quiet week commits nothing. See `SETUP.md`.
 - `parkrun_event_data.py` — one event's latest results (currently Stretford).
   Ad-hoc, not scheduled.
 
