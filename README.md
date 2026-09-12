@@ -11,11 +11,16 @@ Bolton in March 2013.
 
 ## Read this first
 
-| File | What it is |
-| --- | --- |
-| `data/athlete_448437_summary.md` | Human-readable digest: totals, latest run, PB, and a table of every event with how many times it was run. **Start here.** |
-| `data/athlete_448437.json` | The complete record — every individual result, plus derived stats. Use for anything needing detail or calculation. |
-| `data/athlete_448437_results.csv` | The same results as a flat table, if that's easier. |
+| File | Size | Use it for |
+| --- | --- | --- |
+| `data/athlete_448437_summary.md` | ~3 KB | Quick facts: totals, latest run, PB, times run at each event. **Start here for simple questions.** |
+| `data/athlete_448437_results.csv` | ~12 KB | **Comparing or ranking across the whole history.** All 254 results back to 2013 in one small table — read the whole file, it costs only ~3k tokens. |
+| `data/athlete_448437.json` | ~61 KB | Same results plus pre-computed stats (`personal_best`, `event_counts`, `annual_bests`, `time_seconds`). Richer, but 5x the size — prefer the CSV when you just need the results. |
+
+**Read the whole file rather than sampling it.** Every result since March 2013
+fits comfortably in context, so questions like "which event am I fastest at",
+"how has my time trended", or "which events have I only run once" should be
+answered from the complete set, never from the most recent few.
 
 ## JSON structure
 
