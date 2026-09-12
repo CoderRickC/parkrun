@@ -1,6 +1,6 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-09-12T12:36:04+00:00
+Updated: 2026-09-12T12:49:04+00:00
 
 - Total parkruns: **254**
 - Different events: **128**
