@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-09-12T12:49:04+00:00
+Updated: 2026-09-19T10:00:05+00:00
 
-- Total parkruns: **254**
-- Different events: **128**
-- Latest: York Community Woodland on 2026-09-12 in 53:58 (position 345, age grade 25.88%)
+- Total parkruns: **255**
+- Different events: **129**
+- Latest: Father Collins on 2026-09-19 in 43:50 (position 164, age grade 31.86%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -67,6 +67,7 @@ Updated: 2026-09-12T12:49:04+00:00
 | Ellesmere Port | 1 |
 | Epworth Equestrian | 1 |
 | Erddig | 1 |
+| Father Collins | 1 |
 | Fletcher Moss | 1 |
 | Goole | 1 |
 | Greenfield Valley | 1 |

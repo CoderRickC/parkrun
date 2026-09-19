@@ -2,17 +2,17 @@
   "athlete_id": 448437,
   "name": "Richard CLEGG",
   "profile_url": "https://www.parkrun.org.uk/parkrunner/448437/all/",
-  "fetched_at": "2026-09-12T12:49:04+00:00",
-  "total_parkruns": 254,
-  "distinct_events": 128,
+  "fetched_at": "2026-09-19T10:00:05+00:00",
+  "total_parkruns": 255,
+  "distinct_events": 129,
   "latest_run": {
-    "event": "York Community Woodland",
-    "date": "2026-09-12",
-    "run_number": "33",
-    "position": "345",
-    "time": "53:58",
-    "time_seconds": 3238,
-    "age_grade": "25.88%",
+    "event": "Father Collins",
+    "date": "2026-09-19",
+    "run_number": "491",
+    "position": "164",
+    "time": "43:50",
+    "time_seconds": 2630,
+    "age_grade": "31.86%",
     "pb": false
   },
   "first_run": {
@@ -38,17 +38,17 @@
   "summary_stats": {
     "Time": {
       "fastest": "28:37",
-      "average": "39:55",
+      "average": "39:56",
       "slowest": "01:09:23"
     },
     "Age Grading": {
       "fastest": "47.61%",
-      "average": "35.06%",
+      "average": "35.05%",
       "slowest": "19.96%"
     },
     "Overall Position": {
       "fastest": "39",
-      "average": "313.92",
+      "average": "313.33",
       "slowest": "1068"
     }
   },
@@ -170,6 +170,7 @@
     "Ellesmere Port": 1,
     "Epworth Equestrian": 1,
     "Erddig": 1,
+    "Father Collins": 1,
     "Fletcher Moss": 1,
     "Goole": 1,
     "Greenfield Valley": 1,
@@ -245,6 +246,16 @@
     "Żary": 1
   },
   "results": [
+    {
+      "event": "Father Collins",
+      "date": "2026-09-19",
+      "run_number": "491",
+      "position": "164",
+      "time": "43:50",
+      "time_seconds": 2630,
+      "age_grade": "31.86%",
+      "pb": false
+    },
     {
       "event": "York Community Woodland",
       "date": "2026-09-12",
