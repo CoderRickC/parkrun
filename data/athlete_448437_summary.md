@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-09-19T10:00:05+00:00
+Updated: 2026-09-26T11:00:04+00:00
 
-- Total parkruns: **255**
+- Total parkruns: **256**
 - Different events: **129**
-- Latest: Father Collins on 2026-09-19 in 43:50 (position 164, age grade 31.86%)
+- Latest: Delamere on 2026-09-26 in 54:56 (position 393, age grade 25.42%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -18,8 +18,8 @@ Updated: 2026-09-19T10:00:05+00:00
 | Worsley Woods | 8 |
 | Heaton Park | 7 |
 | South Manchester | 6 |
+| Delamere | 5 |
 | Alexandra | 4 |
-| Delamere | 4 |
 | Fleetwood Promenade | 4 |
 | Morecambe Prom | 4 |
 | Burnage | 3 |
