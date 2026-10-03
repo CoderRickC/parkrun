@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-09-26T11:00:04+00:00
+Updated: 2026-10-03T10:00:04+00:00
 
-- Total parkruns: **256**
-- Different events: **129**
-- Latest: Delamere on 2026-09-26 in 54:56 (position 393, age grade 25.42%)
+- Total parkruns: **257**
+- Different events: **130**
+- Latest: Brimstage on 2026-10-03 in 56:31 (position 413, age grade 24.71%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -55,6 +55,7 @@ Updated: 2026-09-26T11:00:04+00:00
 | Birkenhead | 1 |
 | Blackpool | 1 |
 | Bramhall Park | 1 |
+| Brimstage | 1 |
 | Castle Park | 1 |
 | Centre Vale | 1 |
 | Chester | 1 |
