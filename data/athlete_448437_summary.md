@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-10-03T10:00:04+00:00
+Updated: 2026-10-10T10:00:04+00:00
 
-- Total parkruns: **257**
-- Different events: **130**
-- Latest: Brimstage on 2026-10-03 in 56:31 (position 413, age grade 24.71%)
+- Total parkruns: **258**
+- Different events: **131**
+- Latest: Jersey on 2026-10-10 in 51:15 (position 366, age grade 27.25%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -79,6 +79,7 @@ Updated: 2026-10-03T10:00:04+00:00
 | Hyde | 1 |
 | Irchester Country | 1 |
 | Isabel Trail | 1 |
+| Jersey | 1 |
 | Jersey Farm | 1 |
 | Jubilee | 1 |
 | Kew Woods | 1 |
