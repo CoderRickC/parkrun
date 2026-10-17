@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-10-10T10:00:04+00:00
+Updated: 2026-10-17T10:00:05+00:00
 
-- Total parkruns: **258**
-- Different events: **131**
-- Latest: Jersey on 2026-10-10 in 51:15 (position 366, age grade 27.25%)
+- Total parkruns: **259**
+- Different events: **132**
+- Latest: Flint Castle on 2026-10-17 in 54:06 (position 158, age grade 25.82%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -70,6 +70,7 @@ Updated: 2026-10-10T10:00:04+00:00
 | Erddig | 1 |
 | Father Collins | 1 |
 | Fletcher Moss | 1 |
+| Flint Castle | 1 |
 | Goole | 1 |
 | Greenfield Valley | 1 |
 | Halifax | 1 |

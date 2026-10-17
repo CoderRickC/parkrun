@@ -2,17 +2,17 @@
   "athlete_id": 448437,
   "name": "Richard CLEGG",
   "profile_url": "https://www.parkrun.org.uk/parkrunner/448437/all/",
-  "fetched_at": "2026-10-10T10:00:04+00:00",
-  "total_parkruns": 258,
-  "distinct_events": 131,
+  "fetched_at": "2026-10-17T10:00:05+00:00",
+  "total_parkruns": 259,
+  "distinct_events": 132,
   "latest_run": {
-    "event": "Jersey",
-    "date": "2026-10-10",
-    "run_number": "519",
-    "position": "366",
-    "time": "51:15",
-    "time_seconds": 3075,
-    "age_grade": "27.25%",
+    "event": "Flint Castle",
+    "date": "2026-10-17",
+    "run_number": "38",
+    "position": "158",
+    "time": "54:06",
+    "time_seconds": 3246,
+    "age_grade": "25.82%",
     "pb": false
   },
   "first_run": {
@@ -38,17 +38,17 @@
   "summary_stats": {
     "Time": {
       "fastest": "28:37",
-      "average": "40:06",
+      "average": "40:09",
       "slowest": "01:09:23"
     },
     "Age Grading": {
       "fastest": "47.61%",
-      "average": "34.94%",
+      "average": "34.91%",
       "slowest": "19.96%"
     },
     "Overall Position": {
       "fastest": "39",
-      "average": "314.23",
+      "average": "313.63",
       "slowest": "1068"
     }
   },
@@ -173,6 +173,7 @@
     "Erddig": 1,
     "Father Collins": 1,
     "Fletcher Moss": 1,
+    "Flint Castle": 1,
     "Goole": 1,
     "Greenfield Valley": 1,
     "Halifax": 1,
@@ -248,6 +249,16 @@
     "Żary": 1
   },
   "results": [
+    {
+      "event": "Flint Castle",
+      "date": "2026-10-17",
+      "run_number": "38",
+      "position": "158",
+      "time": "54:06",
+      "time_seconds": 3246,
+      "age_grade": "25.82%",
+      "pb": false
+    },
     {
       "event": "Jersey",
       "date": "2026-10-10",
