@@ -2,17 +2,17 @@
   "athlete_id": 448437,
   "name": "Richard CLEGG",
   "profile_url": "https://www.parkrun.org.uk/parkrunner/448437/all/",
-  "fetched_at": "2026-10-17T10:00:05+00:00",
-  "total_parkruns": 259,
+  "fetched_at": "2026-10-24T11:00:06+00:00",
+  "total_parkruns": 260,
   "distinct_events": 132,
   "latest_run": {
-    "event": "Flint Castle",
-    "date": "2026-10-17",
-    "run_number": "38",
-    "position": "158",
-    "time": "54:06",
-    "time_seconds": 3246,
-    "age_grade": "25.82%",
+    "event": "Stretford",
+    "date": "2026-10-24",
+    "run_number": "475",
+    "position": "707",
+    "time": "58:46",
+    "time_seconds": 3526,
+    "age_grade": "23.77%",
     "pb": false
   },
   "first_run": {
@@ -38,17 +38,17 @@
   "summary_stats": {
     "Time": {
       "fastest": "28:37",
-      "average": "40:09",
+      "average": "40:14",
       "slowest": "01:09:23"
     },
     "Age Grading": {
       "fastest": "47.61%",
-      "average": "34.91%",
+      "average": "34.86%",
       "slowest": "19.96%"
     },
     "Overall Position": {
       "fastest": "39",
-      "average": "313.63",
+      "average": "315.14",
       "slowest": "1068"
     }
   },
@@ -115,7 +115,7 @@
     }
   ],
   "event_counts": {
-    "Stretford": 37,
+    "Stretford": 38,
     "Bolton": 23,
     "Peel": 8,
     "Worsley Woods": 8,
@@ -249,6 +249,16 @@
     "Żary": 1
   },
   "results": [
+    {
+      "event": "Stretford",
+      "date": "2026-10-24",
+      "run_number": "475",
+      "position": "707",
+      "time": "58:46",
+      "time_seconds": 3526,
+      "age_grade": "23.77%",
+      "pb": false
+    },
     {
       "event": "Flint Castle",
       "date": "2026-10-17",

@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-10-17T10:00:05+00:00
+Updated: 2026-10-24T11:00:06+00:00
 
-- Total parkruns: **259**
+- Total parkruns: **260**
 - Different events: **132**
-- Latest: Flint Castle on 2026-10-17 in 54:06 (position 158, age grade 25.82%)
+- Latest: Stretford on 2026-10-24 in 58:46 (position 707, age grade 23.77%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -12,7 +12,7 @@ Updated: 2026-10-17T10:00:05+00:00
 
 | Event | Times run |
 | --- | ---: |
-| Stretford | 37 |
+| Stretford | 38 |
 | Bolton | 23 |
 | Peel | 8 |
 | Worsley Woods | 8 |
