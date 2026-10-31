@@ -2,17 +2,17 @@
   "athlete_id": 448437,
   "name": "Richard CLEGG",
   "profile_url": "https://www.parkrun.org.uk/parkrunner/448437/all/",
-  "fetched_at": "2026-10-24T11:00:06+00:00",
-  "total_parkruns": 260,
+  "fetched_at": "2026-10-31T11:00:04+00:00",
+  "total_parkruns": 261,
   "distinct_events": 132,
   "latest_run": {
-    "event": "Stretford",
-    "date": "2026-10-24",
-    "run_number": "475",
-    "position": "707",
-    "time": "58:46",
-    "time_seconds": 3526,
-    "age_grade": "23.77%",
+    "event": "Wilmslow",
+    "date": "2026-10-31",
+    "run_number": "532",
+    "position": "349",
+    "time": "55:15",
+    "time_seconds": 3315,
+    "age_grade": "25.28%",
     "pb": false
   },
   "first_run": {
@@ -38,17 +38,17 @@
   "summary_stats": {
     "Time": {
       "fastest": "28:37",
-      "average": "40:14",
+      "average": "40:17",
       "slowest": "01:09:23"
     },
     "Age Grading": {
       "fastest": "47.61%",
-      "average": "34.86%",
+      "average": "34.83%",
       "slowest": "19.96%"
     },
     "Overall Position": {
       "fastest": "39",
-      "average": "315.14",
+      "average": "315.27",
       "slowest": "1068"
     }
   },
@@ -148,6 +148,7 @@
     "Tawd Valley": 2,
     "Warrington": 2,
     "Whinlatter Forest": 2,
+    "Wilmslow": 2,
     "Woodbank": 2,
     "Worden": 2,
     "Wythenshawe": 2,
@@ -238,7 +239,6 @@
     "Watergrove": 1,
     "Wepre": 1,
     "Widnes": 1,
-    "Wilmslow": 1,
     "Witton": 1,
     "Woodhouse Moor": 1,
     "Wynyard Woodland": 1,
@@ -249,6 +249,16 @@
     "Żary": 1
   },
   "results": [
+    {
+      "event": "Wilmslow",
+      "date": "2026-10-31",
+      "run_number": "532",
+      "position": "349",
+      "time": "55:15",
+      "time_seconds": 3315,
+      "age_grade": "25.28%",
+      "pb": false
+    },
     {
       "event": "Stretford",
       "date": "2026-10-24",

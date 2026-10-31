@@ -1,10 +1,10 @@
 # parkrun summary — Richard CLEGG (A448437)
 
-Updated: 2026-10-24T11:00:06+00:00
+Updated: 2026-10-31T11:00:04+00:00
 
-- Total parkruns: **260**
+- Total parkruns: **261**
 - Different events: **132**
-- Latest: Stretford on 2026-10-24 in 58:46 (position 707, age grade 23.77%)
+- Latest: Wilmslow on 2026-10-31 in 55:15 (position 349, age grade 25.28%)
 - First: Bolton on 2013-03-02 in 28:37
 - Personal best: 28:37 at Bolton on 2013-03-02
 
@@ -45,6 +45,7 @@ Updated: 2026-10-24T11:00:06+00:00
 | Tawd Valley | 2 |
 | Warrington | 2 |
 | Whinlatter Forest | 2 |
+| Wilmslow | 2 |
 | Woodbank | 2 |
 | Worden | 2 |
 | Wythenshawe | 2 |
@@ -135,7 +136,6 @@ Updated: 2026-10-24T11:00:06+00:00
 | Watergrove | 1 |
 | Wepre | 1 |
 | Widnes | 1 |
-| Wilmslow | 1 |
 | Witton | 1 |
 | Woodhouse Moor | 1 |
 | Wynyard Woodland | 1 |
